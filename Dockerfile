@@ -17,4 +17,5 @@ ENV WORDPRESS_TABLE_PREFIX="RW_"
 RUN echo "upload_max_filesize = $SIZE_LIMIT" >> /usr/local/etc/php/php.ini
 RUN echo "post_max_size = $SIZE_LIMIT" >> /usr/local/etc/php/php.ini
 
-CMD ["apache2-foreground"]
+# FIX: Force disable the conflicting Apache module before starting the server
+CMD ["/bin/bash", "-c", "a2dismod mpm_event && docker-entrypoint.sh apache2-foreground"]
