@@ -1,4 +1,4 @@
-FROM wordpress:latest
+FROM wordpress:fpm-alpine
 
 ARG MYSQLPASSWORD
 ARG MYSQLHOST
